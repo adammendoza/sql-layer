@@ -97,7 +97,7 @@ build_sql_layer() {
 # $2 - output jar dir
 build_client_tools() {
     : ${TOOLS_LOC:="git@github.com:FoundationDB/sql-layer-client-tools.git"}
-    : ${TOOLS_REF:="origin/release-2.0"}
+    : ${TOOLS_REF:="v2.0.1"}
     
     pushd .
     mkdir -p "${1}"
