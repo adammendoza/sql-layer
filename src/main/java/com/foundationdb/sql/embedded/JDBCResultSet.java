@@ -31,6 +31,7 @@ import com.foundationdb.direct.Direct;
 import com.foundationdb.direct.DirectResultSet;
 import com.foundationdb.qp.operator.RowCursor;
 import com.foundationdb.qp.row.Row;
+import com.foundationdb.server.error.ErrorCode;
 import com.foundationdb.server.types.TInstance;
 import com.foundationdb.server.types.value.ValueSource;
 import com.foundationdb.sql.server.ServerJavaValues;
@@ -71,12 +72,12 @@ public class JDBCResultSet implements DirectResultSet
         protected ValueSource getValue(int index) {
             if (row == null) {
                 if (cursor == null)
-                    throw JDBCException.wrapped("Already closed.");
+                    throw JDBCException.wrapped("Already closed.", ErrorCode.BAD_CURSOR_STATE);
                 else
-                    throw JDBCException.wrapped("Past end.");
+                    throw JDBCException.wrapped("Past end.", ErrorCode.BAD_CURSOR_STATE);
             }
             if ((index < 0) || (index >= row.rowType().nFields()))
-                throw JDBCException.wrapped("Column index out of bounds");
+                throw JDBCException.wrapped("Column index out of bounds", ErrorCode.RESULTSET_INDEX_OUT_OF_BOUNDS);
 
             return row.value(index);
         }
@@ -446,7 +447,7 @@ public class JDBCResultSet implements DirectResultSet
                 return i;
             }
         }
-        throw new JDBCException("Column not found: " + columnLabel);
+        throw new JDBCException("Column not found: " + columnLabel, ErrorCode.NO_SUCH_COLUMN);
     }
 
     @Override
@@ -1505,7 +1506,7 @@ public class JDBCResultSet implements DirectResultSet
             o.setResults(this);
             return o;
         }
-        throw new JDBCException("No entity class for row");
+        throw new JDBCException("No entity class for row", ErrorCode.INTERNAL_ERROR);
     }
     
     public boolean hasRow() {
