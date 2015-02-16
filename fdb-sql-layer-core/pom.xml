@@ -4,13 +4,13 @@
 
     <groupId>com.foundationdb</groupId>
     <artifactId>fdb-sql-layer-core</artifactId>
-    <version>2.1.1-SNAPSHOT</version>
+    <version>2.1.1</version>
     <packaging>jar</packaging>
 
     <parent>
         <groupId>com.foundationdb</groupId>
         <artifactId>fdb-sql-layer</artifactId>
-        <version>2.1.1-SNAPSHOT</version>
+        <version>2.1.1</version>
     </parent>
     <name>FoundationDB SQL Layer Core</name>
     
@@ -27,13 +27,13 @@
 	<dependency>
   	    <groupId>com.foundationdb</groupId>
 	    <artifactId>fdb-sql-layer-routinefw</artifactId>
-            <version>2.1.1-SNAPSHOT</version>
+            <version>2.1.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.foundationdb</groupId>
             <artifactId>fdb-sql-layer-jdbc-proxy</artifactId>
-            <version>2.1.1-SNAPSHOT</version>
+            <version>2.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
